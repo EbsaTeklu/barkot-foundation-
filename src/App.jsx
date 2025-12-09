@@ -227,36 +227,4 @@ function App() {
   )
 }
 
-export default App;                </div>
-            </div>
-            
-            {/* PURPOSE */}
-            <div id="purpose" className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-bbfGold">
-                <h3 className="text-3xl font-bold text-bbfBlue mb-4">{t('purpose.title')}</h3>
-                <div className="text-lg text-gray-700 space-y-4">
-                    <p>{t('purpose.content1')}</p>
-                    <p>{t('purpose.content2')}</p>
-                </div>
-            </div>
-        </div>
-      </section>
-
-      {/* VALUES */}
-      <section id="values" className="py-20 max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-bbfBlue mb-10 border-b-4 border-bbfGold pb-2 inline-block">{t('values.title')}</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <ValueCard titleKey="values.v1Title" contentKey="values.v1Content" />
-            <ValueCard titleKey="values.v2Title" contentKey="values.v2Content" />
-            <ValueCard titleKey="values.v3Title" contentKey="values.v3Content" />
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer id="contact" className="bg-bbfBlue text-white py-12 text-center">
-        <p>© {currentYear} {t('footer.rights')}</p>
-      </footer>
-    </div>
-  )
-}
-
 export default App;
