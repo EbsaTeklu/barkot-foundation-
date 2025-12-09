@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-// Changed icons: added Music icon for TikTok
-import { Menu, X, Globe, Banknote, Phone, Mail, MapPin, Youtube, Facebook, Send, Music } from 'lucide-react'; 
+// Added Camera icon for the gallery
+import { Menu, X, Globe, Banknote, Phone, Mail, MapPin, Youtube, Facebook, Send, Music, Camera } from 'lucide-react'; 
 
 // --- Navbar Component ---
 const Navbar = () => {
@@ -23,6 +23,7 @@ const Navbar = () => {
             <a href="#about" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.about')}</a>
             <a href="#mission" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.mission')}</a>
             <a href="#values" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.values')}</a>
+            <a href="#works" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.works')}</a> {/* New Works Link */}
             <a href="#contact" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.contact')}</a>
             <div className="flex space-x-2 border-l pl-4">
               <button onClick={() => changeLng('en')} className={`text-sm ${i18n.language==='en'?'font-bold text-bbfPurple':'text-bbfBlue'}`}>EN</button>
@@ -43,6 +44,7 @@ const Navbar = () => {
            <a href="#about" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.about')}</a>
            <a href="#mission" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.mission')}</a>
            <a href="#values" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.values')}</a>
+           <a href="#works" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.works')}</a> {/* Mobile Works Link */}
            <a href="#contact" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.contact')}</a> 
            <div className="flex space-x-4 pt-2 border-t">
               <button onClick={() => changeLng('en')} className="bg-gray-100 px-2 py-1 rounded">EN</button>
@@ -79,6 +81,21 @@ const Hero = () => {
 function App() {
   const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
+
+  // Array of image paths for the gallery/works section
+  const galleryImages = [
+    // RENAME these to match the files you upload to the /public folder
+    { src: '/building-exterior.jpg', alt: 'Foundation Building Exterior' },
+    { src: '/work-1.jpg', alt: 'Internal Patient Support Work' },
+    { src: '/gallery-3.png', alt: 'Outreach Activity' },
+    { src: '/gallery-4.png', alt: 'Facility Interior' },
+    { src: '/gallery-5.png', alt: 'Team Meeting' },
+    { src: '/gallery-6.png', alt: 'Patients and Staff' },
+    { src: '/gallery-7.png', alt: 'Donation Handover' },
+    { src: '/gallery-8.png', alt: 'Group Photo' },
+    // Add more images here if needed
+  ];
+
 
   const ValueCard = ({ titleKey, contentKey }) => (
     <div className="bg-white p-6 rounded-lg shadow-lg text-center border-t-4 border-bbfGold">
@@ -133,6 +150,30 @@ function App() {
             <ValueCard titleKey="values.v3Title" contentKey="values.v3Content" />
         </div>
       </section>
+
+      {/* WORKS / GALLERY SECTION --- NEW SECTION --- */}
+      <section id="works" className="py-20 bg-bbfPurple px-4">
+          <div className="max-w-7xl mx-auto">
+              <h2 className="text-3xl font-bold text-bbfGold mb-10 border-b-4 border-white pb-2 inline-block flex items-center">
+                  <Camera className='mr-3'/> {t('works.title')}
+              </h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                  {galleryImages.slice(0, 8).map((image, index) => ( // Show first 8 images
+                      <img 
+                          key={index}
+                          src={image.src}
+                          alt={image.alt}
+                          className="w-full h-32 object-cover rounded-lg shadow-xl hover:scale-[1.02] transition duration-300 cursor-pointer border-4 border-white"
+                          // NOTE: You must replace the placeholder image paths above with your actual uploaded file names!
+                      />
+                  ))}
+              </div>
+              <p className="text-sm text-white/80 mt-6 italic text-center">
+                  {t('works.note')}
+              </p>
+          </div>
+      </section>
+      {/* ------------------------------------------- */}
       
       {/* CONTACT US SECTION */}
       <section id="contact" className="py-20 bg-white px-4">
@@ -217,11 +258,11 @@ function App() {
             </div>
             
             <div className="flex space-x-6">
-                {/* UPDATED LINKS */}
+                {/* Social Media Links */}
                 <a href="https://youtube.com/@barkotbekelefoundation" target="_blank" className="hover:text-bbfGold transition"><Youtube size={24}/></a>
                 <a href="https://t.me/BarkotBekeleFoundation" target="_blank" className="hover:text-bbfGold transition"><Send size={24}/></a> 
                 <a href="https://www.facebook.com/share/1BtQ6UB852/" target="_blank" className="hover:text-bbfGold transition"><Facebook size={24}/></a>
-                <a href="https://www.tiktok.com/@barkot.bekele.fou?_r=1&_t=ZS-921YxNQFhHr" target="_blank" className="hover:text-bbfGold transition"><Music size={24}/></a> {/* Music icon for TikTok */}
+                <a href="https://www.tiktok.com/@barkot.bekele.fou?_r=1&_t=ZS-921YxNQFhHr" target="_blank" className="hover:text-bbfGold transition"><Music size={24}/></a> 
             </div>
         </div>
       </footer>
