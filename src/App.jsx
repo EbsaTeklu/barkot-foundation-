@@ -1,3 +1,106 @@
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+// Changed icons: added Music icon for TikTok
+import { Menu, X, Globe, Banknote, Phone, Mail, MapPin, Youtube, Facebook, Send, Music } from 'lucide-react'; 
+
+// --- Navbar Component ---
+const Navbar = () => {
+  const { t, i18n } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
+  const changeLng = (l) => { i18n.changeLanguage(l); setIsOpen(false); };
+  
+  return (
+    <nav className="bg-white shadow-md fixed w-full z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-20">
+          <div className="flex items-center">
+            <img className="h-16 w-auto" src="/logo.png" alt="Logo" />
+            {/* FIX: Show the title on mobile now */}
+            <span className="ml-2 text-lg font-bold text-bbfBlue hidden sm:block">Barkot Bekele Foundation</span>
+            <span className="ml-2 text-lg font-bold text-bbfBlue sm:hidden">BB Foundation</span> 
+          </div>
+          <div className="hidden md:flex items-center space-x-6">
+            <a href="#about" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.about')}</a>
+            <a href="#mission" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.mission')}</a>
+            <a href="#values" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.values')}</a>
+            <a href="#contact" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.contact')}</a>
+            <div className="flex space-x-2 border-l pl-4">
+              <button onClick={() => changeLng('en')} className={`text-sm ${i18n.language==='en'?'font-bold text-bbfPurple':'text-bbfBlue'}`}>EN</button>
+              <button onClick={() => changeLng('am')} className={`text-sm ${i18n.language==='am'?'font-bold text-bbfPurple':'text-bbfBlue'}`}>አማ</button>
+              <button onClick={() => changeLng('om')} className={`text-sm ${i18n.language==='om'?'font-bold text-bbfPurple':'text-bbfBlue'}`}>OM</button>
+            </div>
+            <a href="#donate-section" className="bg-bbfGold px-4 py-2 rounded-full text-bbfBlue font-bold hover:bg-bbfGold-dark transition">{t('nav.donate')}</a>
+          </div>
+          <div className="md:hidden flex items-center">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-bbfBlue p-2">
+              {isOpen ? <X /> : <Menu />}
+            </button>
+          </div>
+        </div>
+      </div>
+      {isOpen && (
+        <div className="md:hidden bg-white pb-4 px-4 shadow-lg flex flex-col space-y-2">
+           <a href="#about" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.about')}</a>
+           <a href="#mission" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.mission')}</a>
+           <a href="#values" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.values')}</a>
+           <a href="#contact" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.contact')}</a> 
+           <div className="flex space-x-4 pt-2 border-t">
+              <button onClick={() => changeLng('en')} className="bg-gray-100 px-2 py-1 rounded">EN</button>
+              <button onClick={() => changeLng('am')} className="bg-gray-100 px-2 py-1 rounded">አማ</button>
+              <button onClick={() => changeLng('om')} className="bg-gray-100 px-2 py-1 rounded">OM</button>
+           </div>
+           <a href="#donate-section" onClick={()=>setIsOpen(false)} className="bg-bbfGold text-center text-bbfBlue font-bold mt-4 px-4 py-2 rounded-full">{t('nav.donate')}</a>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+// --- Hero Component ---
+const Hero = () => {
+  const { t } = useTranslation();
+  return (
+    <div className="relative bg-bbfPurple pt-32 pb-20 px-4 text-center md:text-left">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center">
+        <div className="md:w-1/2">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-bbfGold mb-6 leading-tight">{t('hero.title')}</h1>
+          <p className="text-lg text-white mb-8">{t('hero.subtitle')}</p>
+          <a href="#mission" className="bg-bbfGold text-bbfBlue font-bold text-lg px-8 py-3 rounded-full shadow-lg hover:bg-bbfGold-dark transition">{t('hero.cta')}</a>
+        </div>
+        <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center">
+           <img src="/logo.png" className="w-64 h-auto drop-shadow-2xl" alt="Barkot Bekele Foundation Logo"/>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- Main App Component ---
+function App() {
+  const { t } = useTranslation();
+  const currentYear = new Date().getFullYear();
+
+  const ValueCard = ({ titleKey, contentKey }) => (
+    <div className="bg-white p-6 rounded-lg shadow-lg text-center border-t-4 border-bbfGold">
+      <h3 className="text-xl font-bold text-bbfPurple mb-2">{t(titleKey)}</h3>
+      <p className="text-gray-600 text-sm">{t(contentKey)}</p>
+    </div>
+  );
+  
+  return (
+    <div className="min-h-screen bg-gray-50 font-sans">
+      <Navbar />
+      <Hero />
+      
+      {/* ABOUT US */}
+      <section id="about" className="py-20 max-w-7xl mx-auto px-4">
+        <h2 className="text-3xl font-bold text-bbfBlue mb-6 border-b-4 border-bbfGold pb-2 inline-block">{t('about.title')}</h2>
+        <div className="text-lg text-gray-700 space-y-6">
+            <p>{t('about.content1')}</p>
+            <p className="italic">{t('about.content2')}</p>
+        </div>
+      </section>
+
       {/* MISSION & PURPOSE (Side-by-Side) */}
       <section className="py-20 bg-blue-50 px-4">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
@@ -95,7 +198,7 @@
             <div className="space-y-4 pt-12 md:pt-0">
                  <h3 className="text-2xl font-bold text-bbfBlue mb-2">{t('donate.telebirrTitle')}</h3>
                  <p className="text-lg font-semibold flex items-center">
-                    <Clock size={24} className="mr-2 text-bbfPurple"/> Telebirr Short Code: <span className="text-2xl font-mono ml-2">569477</span>
+                    <Banknote size={24} className="mr-2 text-bbfPurple"/> Telebirr Short Code: <span className="text-2xl font-mono ml-2">569477</span>
                  </p>
                  <div className="mt-4 flex justify-start">
                     {/* Placeholder for QR Code */}
@@ -114,10 +217,11 @@
             </div>
             
             <div className="flex space-x-6">
-                <a href="https://www.youtube.com/" target="_blank" className="hover:text-bbfGold transition"><Youtube size={24}/></a>
-                <a href="https://t.me/" target="_blank" className="hover:text-bbfGold transition"><Send size={24}/></a> {/* Using Send icon for Telegram */}
-                <a href="https://www.facebook.com/" target="_blank" className="hover:text-bbfGold transition"><Facebook size={24}/></a>
-                <a href="https://www.tiktok.com/" target="_blank" className="hover:text-bbfGold transition"><Home size={24}/></a> {/* Using Home icon for TikTok as placeholder */}
+                {/* UPDATED LINKS */}
+                <a href="https://youtube.com/@barkotbekelefoundation" target="_blank" className="hover:text-bbfGold transition"><Youtube size={24}/></a>
+                <a href="https://t.me/BarkotBekeleFoundation" target="_blank" className="hover:text-bbfGold transition"><Send size={24}/></a> 
+                <a href="https://www.facebook.com/share/1BtQ6UB852/" target="_blank" className="hover:text-bbfGold transition"><Facebook size={24}/></a>
+                <a href="https://www.tiktok.com/@barkot.bekele.fou?_r=1&_t=ZS-921YxNQFhHr" target="_blank" className="hover:text-bbfGold transition"><Music size={24}/></a> {/* Music icon for TikTok */}
             </div>
         </div>
       </footer>
