@@ -6,9 +6,14 @@ const resources = {
   en: {
     translation: {
       nav: { about: "About Us", mission: "Our Mission", purpose: "Purpose", values: "Values", contact: "Contact Us", donate: "Donate" },
-      hero: { title: "Unwavering Support and Care for Cancer Patients and Their Families.", subtitle: "Established in memory of Mrs. Barkot Bekele, we are dedicated to keeping her legacy of kindness and compassion alive.", cta: "Learn Our Mission" },
+      hero: { 
+        title: "IF WE LIVE, LET IT BE IN TRUTH", // <-- NEW SLOGAN (TITLE)
+        subtitle: "Unwavering Support and Care for Cancer Patients and Their Families. Keeping the legacy of kindness and compassion alive.", // <-- NEW SUBTITLE
+        cta: "Learn Our Mission" 
+      },
+      pageTitle: "Barkot Bekele Foundation", // <-- NEW PAGE TITLE TEXT
       
-      // ... (About, Mission, Purpose, Values content remains the same) ...
+      // ... (Rest of English content remains the same) ...
       about: {
         title: "About Barkot Bekele Foundation",
         content1: "Barkot Bekele Foundation is a non-profit charitable organization established on Saturday, October 29, 2018 E.C. in Bishoftu City, Oromia Region, through the vision and initiative of Apostle Yidnekachew Shimelis, together with their children, family members, close relatives, spiritual children, and other kind-hearted individuals.",
@@ -60,9 +65,14 @@ const resources = {
   am: {
     translation: {
       nav: { about: "ስለ እኛ", mission: "ተልዕኮ", purpose: "ዓላማ", values: "እሴቶች", contact: "ያግኙን", donate: "ለግስ" },
-      hero: { title: "ጽኑ ድጋፍ እና እንክብካቤ ለካንሰር በሽተኞች እና ቤተሰቦቻቸው።", subtitle: "በወ/ሮ ባርኮት በቀለ መታሰቢያነት የተመሰረተው፣ የእርሷን ደግነትና ርህራሄ ህያው ለማድረግ ቁርጠኞች ነን።", cta: "ተልዕኮአችንን ይወቁ" },
+      hero: { 
+        title: "የእውነት ኖረን የውሸት አንሙት", // <-- NEW SLOGAN (TITLE)
+        subtitle: "ጽኑ ድጋፍ እና እንክብካቤ ለካንሰር በሽተኞች እና ቤተሰቦቻቸው። የእርሷን ደግነትና ርህራሄ ህያው ለማድረግ ቁርጠኞች ነን።", // <-- NEW SUBTITLE
+        cta: "ተልዕኮአችንን ይወቁ" 
+      },
+      pageTitle: "ባርኮት በቀለ ፋውንዴሽን", // <-- NEW PAGE TITLE TEXT
       
-      // ... (Amharic content remains the same) ...
+      // ... (Rest of Amharic content remains the same) ...
       about: { 
         title: "ስለ ባርኮት በቀለ ፋውንዴሽን", 
         content1: "ባርኮት በቀለ ፋውንዴሽን በኦሮሚያ ክልል በቢሾፍቱ ከተማ በዕለተ ቅዳሜ ጥቅምት 29 2018 ዓ.ም በሀዋርያ ይድነቃቸው ሽመልስ ሃሳብ አመንጪነት እና በልጆቻቸው፣ቤተሰቦቻቸው፣ወዳጅ ዘመዶች፣በመንፈሳዊ ልጆች እንዲሁም ልበ ቅን የሆኑና ለመልካም ስራ የተነሳሱ መልካምን ማድረግ በሚያስደስታቸው አባላት የተመሰረተ ለትርፍ ያልተቋቋም የበጎ አድራጎት ድርጅት ነው::", 
@@ -111,9 +121,14 @@ const resources = {
   om: {
     translation: {
       nav: { about: "Waa'ee Keenya", mission: "Ergama", purpose: "Kaayyoo", values: "Duudhaalee", contact: "Nu Quunnamaa", donate: "Arjoomaa" },
-      hero: { title: "Deeggarsa cimaa fi kunuunsa Warra Kaanseradhan Qabamaniif.", subtitle: "Waa'ee W. Baqqalaa yaadachuuf hundeeffame, gocha ishii gaarii jiraachisuuf waadaa galleerra.", cta: "Ergama Keenya Beekaa" },
+      hero: { 
+        title: "Yoo dhugaan jiraanne, dhugaa waliin haa jiraannu.", // <-- NEW SLOGAN (TITLE)
+        subtitle: "Deeggarsa cimaa fi kunuunsa Warra Kaanseradhan Qabamaniif. Gocha ishii gaarii jiraachisuuf waadaa galleerra.", // <-- NEW SUBTITLE
+        cta: "Ergama Keenya Beekaa" 
+      },
+      pageTitle: "FA'ONDEESHIINII BARKOOT BEQQELEE", // <-- NEW PAGE TITLE TEXT
       
-      // PLACEHOLDER: Please provide Oromiffa content for these sections later.
+      // ... (Placeholder Oromiffa content remains the same) ...
       about: { title: "Waa'ee Faawundeeshinii Barkot Baqqalaa", content1: "[Oromiffa content goes here]", content2: "" },
       mission: { title: "Ergama Keenya", content1: "[Oromiffa content goes here]", content2: "" },
       purpose: { title: "Kaayyoo Keenya", content1: "[Oromiffa content goes here]", content2: "" },
