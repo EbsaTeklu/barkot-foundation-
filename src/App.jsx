@@ -108,7 +108,7 @@ function App() {
   ];
   
   const boardMembers = [
-      { img: '/apostle-yidnekachew.jpg', name: 'Apostle Yidnekachew Shimelis', role: 'board.founder' },
+      { img: '/apostle-yidnekachew.png', name: 'Apostle Yidnekachew Shimelis', role: 'board.founder' },
       { img: '/board-ceo.jpg', name: 'Dr. John Doe', role: 'board.ceo' },
       { img: '/board-finance.jpg', name: 'Mrs. Jane Smith', role: 'board.finance' },
   ];
