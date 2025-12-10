@@ -271,8 +271,9 @@ function App() {
             </div>
         </div>
       </section>
+// ... (code above, remains the same until the DONATE SECTION)
 
-      {/* DONATE SECTION (omitted for brevity, remains the same) */}
+      {/* DONATE SECTION */}
       <section id="donate-section" className="py-20 bg-blue-50 px-4">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
              {/* Bank Accounts */}
@@ -280,36 +281,55 @@ function App() {
                 <h2 className="text-3xl font-bold text-bbfPurple mb-6 border-b-4 border-bbfGold pb-2 inline-block">{t('nav.donate')}</h2>
                 <div className="space-y-3 text-sm text-bbfBlue">
                     <p className="font-bold text-lg flex items-center"><Banknote size={24} className='mr-2 text-bbfGold'/> {t('donate.bankTitle')}:</p>
-                    <p className="bg-blue-200 p-3 rounded">
-                        <span className="font-semibold text-bbfGold block">CBE (Commercial Bank of Ethiopia):</span>
-                        Barkot Bekele Foundation: <span className="text-lg font-mono">10000000000</span>
-                    </p>
-                    <p className="bg-blue-200 p-3 rounded">
-                        <span className="font-semibold text-bbfGold block">Abyssinia Bank:</span>
-                        <span className="text-lg font-mono">2678817818</span>
-                    </p>
-                    <p className="bg-blue-200 p-3 rounded">
-                        <span className="font-semibold text-bbfGold block">Abay Bank:</span>
-                        <span className="text-lg font-mono">10000000000</span>
-                    </p>
+                    
+                    {/* CBE */}
+                    <div className="bg-blue-200 p-3 rounded flex items-center">
+                        <img src="/logo-cbe.png" alt="CBE Logo" className="w-8 h-8 object-contain mr-3"/>
+                        <div>
+                            <span className="font-semibold text-bbfPurple block">CBE (Commercial Bank of Ethiopia):</span> {/* COLOR CHANGE HERE */}
+                            Barkot Bekele Foundation: <span className="text-lg font-mono">10000000000</span>
+                        </div>
+                    </div>
+                    
+                    {/* Abyssinia Bank */}
+                    <div className="bg-blue-200 p-3 rounded flex items-center">
+                        <img src="/logo-abyssinia.png" alt="Abyssinia Bank Logo" className="w-8 h-8 object-contain mr-3"/>
+                        <div>
+                            <span className="font-semibold text-bbfPurple block">Abyssinia Bank:</span> {/* COLOR CHANGE HERE */}
+                            <span className="text-lg font-mono">2678817818</span>
+                        </div>
+                    </div>
+                    
+                    {/* Abay Bank */}
+                    <div className="bg-blue-200 p-3 rounded flex items-center">
+                        <img src="/logo-abay.png" alt="Abay Bank Logo" className="w-8 h-8 object-contain mr-3"/>
+                        <div>
+                            <span className="font-semibold text-bbfPurple block">Abay Bank:</span> {/* COLOR CHANGE HERE */}
+                            <span className="text-lg font-mono">10000000000</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             {/* QR/Telebirr */}
             <div className="space-y-4 pt-12 md:pt-0">
-                 <h3 className="text-2xl font-bold text-bbfBlue mb-2">{t('donate.telebirrTitle')}</h3>
+                 <h3 className="text-2xl font-bold text-bbfBlue mb-2 flex items-center">
+                     {t('donate.telebirrTitle')} 
+                     <img src="/logo-telebirr.png" alt="Telebirr Logo" className="w-10 h-10 object-contain ml-3"/>
+                 </h3>
                  <p className="text-lg font-semibold flex items-center">
                     <Banknote size={24} className="mr-2 text-bbfPurple"/> Telebirr Short Code: <span className="text-2xl font-mono ml-2">569477</span>
                  </p>
                  <div className="mt-4 flex justify-start">
                     {/* Placeholder for QR Code */}
-                    <img src="/qr-code.png" alt="Sample QR Code" className="w-32 h-32 bg-white p-1 rounded shadow-lg border border-bbfGold"/>
+                    <img src="/qr-code.png" alt="Telebirr QR Code" className="w-32 h-32 bg-white p-1 rounded shadow-lg border border-bbfGold"/>
                  </div>
                  <p className="text-xs italic pt-2 opacity-70">Please ensure qr-code.png is uploaded to the public folder.</p>
             </div>
         </div>
       </section>
 
+      {/* FOOTER (omitted for brevity, remains the same) */}
       {/* FOOTER (omitted for brevity, remains the same) */}
       <footer className="bg-bbfBlue text-white py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
