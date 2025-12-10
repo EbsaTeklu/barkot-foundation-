@@ -58,12 +58,17 @@ const Navbar = () => {
   );
 };
 
-// --- Hero Component (omitted for brevity, remains the same) ---
+// --- Hero Component (Texture and Overlay Added) ---
 const Hero = () => {
   const { t } = useTranslation();
   return (
-    <div className="relative bg-bbfPurple pt-32 pb-20 px-4 text-center md:text-left">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center">
+    // Background pattern and circles added to the Hero section
+    <div className="relative bg-bbfPurple pt-32 pb-20 px-4 text-center md:text-left overflow-hidden 
+                    after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-[url('/bbf-pattern.svg')] after:opacity-10 after:z-0">
+      <div className="absolute top-1/4 -right-1/4 w-80 h-80 rounded-full bg-bbfBlue opacity-30 blur-3xl z-0"></div>
+      <div className="absolute bottom-0 -left-1/4 w-64 h-64 rounded-full bg-bbfGold opacity-20 blur-3xl z-0"></div>
+      
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center relative z-10">
         <div className="md:w-1/2">
           <h1 className="text-4xl md:text-5xl font-extrabold text-bbfGold mb-6 leading-tight">{t('hero.title')}</h1>
           <p className="text-lg text-white mb-8">{t('hero.subtitle')}</p>
@@ -102,7 +107,6 @@ function App() {
 
   // Array of image paths for the works section
   const galleryImages = [
-    // Ensure these three image files are uploaded to the /public folder
     { src: '/gallery-1.jpg', alt: 'Foundation Building' },
     { src: '/gallery-2.jpg', alt: 'Internal Patient Support' },
     { src: '/gallery-3.jpg', alt: 'Outreach Activity' },
@@ -142,7 +146,7 @@ function App() {
       <Navbar />
       <Hero />
       
-      {/* ABOUT US */}
+      {/* ABOUT US (omitted for brevity, remains the same) */}
       <section id="about" className="py-20 max-w-7xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-bbfBlue mb-6 border-b-4 border-bbfGold pb-2 inline-block">{t('about.title')}</h2>
         <div className="text-lg text-gray-700 space-y-6">
@@ -151,7 +155,7 @@ function App() {
         </div>
       </section>
 
-      {/* MISSION & PURPOSE (Side-by-Side) */}
+      {/* MISSION & PURPOSE (omitted for brevity, remains the same) */}
       <section className="py-20 bg-blue-50 px-4">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
             {/* MISSION */}
@@ -174,7 +178,7 @@ function App() {
         </div>
       </section>
 
-      {/* VALUES */}
+      {/* VALUES (omitted for brevity, remains the same) */}
       <section id="values" className="py-20 max-w-7xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-bbfBlue mb-10 border-b-4 border-bbfGold pb-2 inline-block">{t('values.title')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -184,9 +188,10 @@ function App() {
         </div>
       </section>
 
-      {/* WORKS / GALLERY SECTION */}
-      <section id="works" className="py-20 bg-bbfPurple px-4">
-          <div className="max-w-7xl mx-auto">
+      {/* WORKS / GALLERY SECTION (Texture Added) */}
+      <section id="works" className="relative py-20 bg-bbfPurple px-4 overflow-hidden 
+                     after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-[url('/bbf-pattern.svg')] after:opacity-10 after:z-0">
+          <div className="max-w-7xl mx-auto relative z-10">
               <h2 className="text-3xl font-bold text-bbfGold mb-10 border-b-4 border-white pb-2 inline-block flex items-center">
                   <Camera className='mr-3'/> {t('works.title')}
               </h2>
@@ -207,7 +212,7 @@ function App() {
           </div>
       </section>
       
-      {/* BOARD / TEAM SECTION */}
+      {/* BOARD / TEAM SECTION (omitted for brevity, remains the same) */}
        <section id="board" className="py-20 max-w-7xl mx-auto px-4 bg-gray-50">
           <h2 className="text-3xl font-bold text-bbfBlue mb-12 border-b-4 border-bbfGold pb-2 inline-block flex items-center">
               <Users className='mr-3 text-bbfPurple'/> {t('board.title')}
@@ -227,7 +232,7 @@ function App() {
           </p>
       </section>
 
-      {/* CONTACT US SECTION */}
+      {/* CONTACT US SECTION (omitted for brevity, remains the same) */}
       <section id="contact" className="py-20 bg-white px-4">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
             {/* Contact Form */}
@@ -252,11 +257,10 @@ function App() {
                 </form>
             </div>
             
-            {/* Map Placeholder - NOW A REAL MAP */}
+            {/* Map */}
             <div>
                 <h3 className="text-xl font-bold text-bbfBlue mb-4">{t('contact.locationTitle')}</h3>
                 <div className="relative h-96 bg-gray-200 rounded-lg shadow-xl overflow-hidden flex items-center justify-center">
-                    {/* START: Embedded Google Map for Bishoftu, Oromia, Ethiopia */}
                     <iframe 
                         src="https://maps.google.com/maps?q=Bishoftu,Oromia,Ethiopia&output=embed"
                         width="100%" 
@@ -266,14 +270,12 @@ function App() {
                         loading="lazy" 
                         referrerPolicy="no-referrer-when-downgrade">
                     </iframe>
-                    {/* END: Embedded Google Map */}
                 </div>
             </div>
         </div>
       </section>
-// ... (code above, remains the same until the DONATE SECTION)
 
-      {/* DONATE SECTION */}
+      {/* DONATE SECTION (QR Code resized and Logos updated) */}
       <section id="donate-section" className="py-20 bg-blue-50 px-4">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
              {/* Bank Accounts */}
@@ -286,7 +288,7 @@ function App() {
                     <div className="bg-blue-200 p-3 rounded flex items-center">
                         <img src="/logo-cbe.png" alt="CBE Logo" className="w-8 h-8 object-contain mr-3"/>
                         <div>
-                            <span className="font-semibold text-bbfPurple block">CBE (Commercial Bank of Ethiopia):</span> {/* COLOR CHANGE HERE */}
+                            <span className="font-semibold text-bbfPurple block">CBE (Commercial Bank of Ethiopia):</span>
                             Barkot Bekele Foundation: <span className="text-lg font-mono">10000000000</span>
                         </div>
                     </div>
@@ -295,7 +297,7 @@ function App() {
                     <div className="bg-blue-200 p-3 rounded flex items-center">
                         <img src="/logo-abyssinia.png" alt="Abyssinia Bank Logo" className="w-8 h-8 object-contain mr-3"/>
                         <div>
-                            <span className="font-semibold text-bbfPurple block">Abyssinia Bank:</span> {/* COLOR CHANGE HERE */}
+                            <span className="font-semibold text-bbfPurple block">Abyssinia Bank:</span>
                             <span className="text-lg font-mono">2678817818</span>
                         </div>
                     </div>
@@ -304,7 +306,7 @@ function App() {
                     <div className="bg-blue-200 p-3 rounded flex items-center">
                         <img src="/logo-abay.png" alt="Abay Bank Logo" className="w-8 h-8 object-contain mr-3"/>
                         <div>
-                            <span className="font-semibold text-bbfPurple block">Abay Bank:</span> {/* COLOR CHANGE HERE */}
+                            <span className="font-semibold text-bbfPurple block">Abay Bank:</span>
                             <span className="text-lg font-mono">10000000000</span>
                         </div>
                     </div>
@@ -321,15 +323,18 @@ function App() {
                     <Banknote size={24} className="mr-2 text-bbfPurple"/> Telebirr Short Code: <span className="text-2xl font-mono ml-2">569477</span>
                  </p>
                  <div className="mt-4 flex justify-start">
-                    {/* Placeholder for QR Code */}
-                    <img src="/qr-code.png" alt="Telebirr QR Code" className="w-32 h-32 bg-white p-1 rounded shadow-lg border border-bbfGold"/>
+                    {/* QR Code - SIZE CHANGED TO W-64 H-64 */}
+                    <img 
+                        src="/qr-code.png" 
+                        alt="Telebirr QR Code" 
+                        className="w-64 h-64 bg-white p-1 rounded shadow-lg border border-bbfGold" 
+                    />
                  </div>
                  <p className="text-xs italic pt-2 opacity-70">Please ensure qr-code.png is uploaded to the public folder.</p>
             </div>
         </div>
       </section>
 
-      {/* FOOTER (omitted for brevity, remains the same) */}
       {/* FOOTER (omitted for brevity, remains the same) */}
       <footer className="bg-bbfBlue text-white py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
