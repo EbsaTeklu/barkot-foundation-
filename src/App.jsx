@@ -15,7 +15,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <img className="h-16 w-auto" src="/logo.png" alt="Logo" />
             <span className="ml-2 text-lg font-bold text-bbfBlue hidden sm:block">Barkot Bekele Foundation</span>
-            
+            <span className="ml-2 text-base font-bold text-bbfBlue sm:hidden">Barkot Bekele Foundation</span>
           </div>
           <div className="hidden md:flex items-center space-x-6">
             <a href="#about" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.about')}</a>
