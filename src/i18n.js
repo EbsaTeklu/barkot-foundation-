@@ -11,7 +11,7 @@ const resources = {
       
       about: {
         title: "About Barkot Bekele Foundation",
-        content1: "Barkot Bekele Foundation is a non-profit charitable organization established on Saturday, October 29, 2018 E.C. in Bishoftu City, Oromia Region, through the vision and initiative of Apostle Yidnekachew Shimelis, together with their children, family members, close relatives, spiritual children, and other kind-hearted individuals.",
+        content1: "Barkot Bekele Foundation is a non-profit charitable organization established on Saturday, November 07, 2025 G.C. in Bishoftu City, Oromia Region, through the vision and initiative of Apostle Yidnekachew Shimelis, together with their children, family members, close relatives, spiritual children, and other kind-hearted individuals.",
         content2: "The foundation was established in memory of Mrs. Barkot Bekele, the beloved wife of Apostle Yidnekachew Shimelis and mother of three. She served faithfully with her husband, committed to the work of the Gospel with integrity. She was known especially for her role in genuine biblical service—supporting the poor and those in hardship. Because of her remarkable legacy of kindness and compassion, the foundation was established to keep her good works alive."
       },
       
