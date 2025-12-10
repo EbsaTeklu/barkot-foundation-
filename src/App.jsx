@@ -231,8 +231,9 @@ function App() {
               {t('board.note')}
           </p>
       </section>
+// ... (code remains the same up to the start of the Contact section)
 
-      {/* CONTACT US SECTION (omitted for brevity, remains the same) */}
+      {/* CONTACT US SECTION */}
       <section id="contact" className="py-20 bg-white px-4">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
             {/* Contact Form */}
@@ -246,8 +247,26 @@ function App() {
                 </div>
                 
                 <h3 className="text-xl font-bold text-bbfBlue mb-4">{t('contact.formTitle')}</h3>
-                {/* Mailto form: sends email directly using client */}
-                <form action="mailto:barkotbekelefoundation@gmail.com" method="post" encType="text/plain" className="space-y-4 bg-blue-50 p-6 rounded-lg shadow">
+                
+                {/* START: UPDATED FORM TO USE JAVASCRIPT FOR CLEAN MAILTO BODY */}
+                <form onSubmit={(e) => {
+                    e.preventDefault(); // Stop default form submission
+                    
+                    // Get values from the form inputs
+                    const name = e.target.name.value;
+                    const email = e.target.email.value;
+                    const message = e.target.message.value;
+                    
+                    // Construct the email body to be clean, adding sender info for context
+                    const subject = encodeURIComponent(`Message from ${name} via Website`);
+                    const bodyContent = encodeURIComponent(`Sender Name: ${name}\nSender Email: ${email}\n\nMessage:\n${message}`);
+                    
+                    const mailtoLink = `mailto:barkotbekelefoundation@gmail.com?subject=${subject}&body=${bodyContent}`;
+                    
+                    // Open the email client
+                    window.location.href = mailtoLink;
+                }} className="space-y-4 bg-blue-50 p-6 rounded-lg shadow">
+                    
                     <input type="text" name="name" placeholder={t('contact.namePlaceholder')} className="w-full p-3 border rounded-md focus:border-bbfPurple" required />
                     <input type="email" name="email" placeholder={t('contact.emailPlaceholder')} className="w-full p-3 border rounded-md focus:border-bbfPurple" required />
                     <textarea name="message" rows="4" placeholder={t('contact.messagePlaceholder')} className="w-full p-3 border rounded-md focus:border-bbfPurple" required></textarea>
@@ -255,16 +274,17 @@ function App() {
                         {t('contact.sendButton')} <Send size={20} className="ml-2"/>
                     </button>
                 </form>
+                {/* END: UPDATED FORM */}
             </div>
             
-            {/* Map */}
+            {/* Map (remains the same) */}
             <div>
                 <h3 className="text-xl font-bold text-bbfBlue mb-4">{t('contact.locationTitle')}</h3>
                 <div className="relative h-96 bg-gray-200 rounded-lg shadow-xl overflow-hidden flex items-center justify-center">
                     <iframe 
                         src="https://maps.google.com/maps?q=Bishoftu,Oromia,Ethiopia&output=embed"
                         width="100%" 
-                        height="100%" 
+                        height="150%" 
                         style={{border: 0}}
                         allowFullScreen="" 
                         loading="lazy" 
@@ -274,7 +294,7 @@ function App() {
             </div>
         </div>
       </section>
-
+      
       {/* DONATE SECTION (QR Code resized and Logos updated) */}
       <section id="donate-section" className="py-20 bg-blue-50 px-4">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
