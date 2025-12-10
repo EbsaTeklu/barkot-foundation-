@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-// Added Camera icon for the gallery
-import { Menu, X, Globe, Banknote, Phone, Mail, MapPin, Youtube, Facebook, Send, Music, Camera } from 'lucide-react'; 
+import { Menu, X, Globe, Banknote, Phone, Mail, MapPin, Youtube, Facebook, Send, Music, Camera, Users, Award } from 'lucide-react'; 
 
-// --- Navbar Component ---
+// --- Navbar Component (remains the same) ---
 const Navbar = () => {
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +14,6 @@ const Navbar = () => {
         <div className="flex justify-between h-20">
           <div className="flex items-center">
             <img className="h-16 w-auto" src="/logo.png" alt="Logo" />
-            {/* FIX: Show the title on mobile now */}
             <span className="ml-2 text-lg font-bold text-bbfBlue hidden sm:block">Barkot Bekele Foundation</span>
             <span className="ml-2 text-lg font-bold text-bbfBlue sm:hidden">BB Foundation</span> 
           </div>
@@ -23,7 +21,8 @@ const Navbar = () => {
             <a href="#about" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.about')}</a>
             <a href="#mission" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.mission')}</a>
             <a href="#values" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.values')}</a>
-            <a href="#works" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.works')}</a> {/* New Works Link */}
+            <a href="#works" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.works')}</a> 
+            <a href="#board" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.board')}</a> {/* New Board Link */}
             <a href="#contact" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.contact')}</a>
             <div className="flex space-x-2 border-l pl-4">
               <button onClick={() => changeLng('en')} className={`text-sm ${i18n.language==='en'?'font-bold text-bbfPurple':'text-bbfBlue'}`}>EN</button>
@@ -44,7 +43,8 @@ const Navbar = () => {
            <a href="#about" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.about')}</a>
            <a href="#mission" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.mission')}</a>
            <a href="#values" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.values')}</a>
-           <a href="#works" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.works')}</a> {/* Mobile Works Link */}
+           <a href="#works" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.works')}</a> 
+           <a href="#board" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.board')}</a> {/* Mobile Board Link */}
            <a href="#contact" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.contact')}</a> 
            <div className="flex space-x-4 pt-2 border-t">
               <button onClick={() => changeLng('en')} className="bg-gray-100 px-2 py-1 rounded">EN</button>
@@ -58,7 +58,7 @@ const Navbar = () => {
   );
 };
 
-// --- Hero Component ---
+// --- Hero Component (remains the same) ---
 const Hero = () => {
   const { t } = useTranslation();
   return (
@@ -77,23 +77,40 @@ const Hero = () => {
   );
 };
 
+// --- Team Member Card Component ---
+const TeamMemberCard = ({ imageSrc, name, roleKey }) => {
+  const { t } = useTranslation();
+  return (
+    <div className="flex flex-col items-center text-center p-4">
+      <img 
+        src={imageSrc}
+        alt={name}
+        className="w-40 h-40 object-cover rounded-full mb-4 border-4 border-bbfGold shadow-lg"
+      />
+      <h4 className="text-xl font-bold text-bbfPurple">{name}</h4>
+      <p className="text-bbfBlue font-semibold text-sm">{t(roleKey)}</p>
+    </div>
+  );
+};
+
+
 // --- Main App Component ---
 function App() {
   const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
-  // Array of image paths for the gallery/works section
+  // Array of image paths for the works section
   const galleryImages = [
     // RENAME these to match the files you upload to the /public folder
-    { src: '/building-exterior.jpg', alt: 'Foundation Building Exterior' },
-    { src: '/work-1.jpg', alt: 'Internal Patient Support Work' },
-    { src: '/gallery-3.png', alt: 'Outreach Activity' },
-    { src: '/gallery-4.png', alt: 'Facility Interior' },
-    { src: '/gallery-5.png', alt: 'Team Meeting' },
-    { src: '/gallery-6.png', alt: 'Patients and Staff' },
-    { src: '/gallery-7.png', alt: 'Donation Handover' },
-    { src: '/gallery-8.png', alt: 'Group Photo' },
-    // Add more images here if needed
+    { src: '/gallery-1.jpg', alt: 'Foundation Building' },
+    { src: '/gallery-2.jpg', alt: 'Internal Patient Support' },
+    { src: '/gallery-3.jpg', alt: 'Outreach Activity' },
+  ];
+  
+  const boardMembers = [
+      { img: '/apostle-yidnekachew.jpg', name: 'Apostle Yidnekachew Shimelis', role: 'board.founder' },
+      { img: '/board-ceo.jpg', name: 'Dr. John Doe', role: 'board.ceo' },
+      { img: '/board-finance.jpg', name: 'Mrs. Jane Smith', role: 'board.finance' },
   ];
 
 
@@ -151,21 +168,21 @@ function App() {
         </div>
       </section>
 
-      {/* WORKS / GALLERY SECTION --- NEW SECTION --- */}
+      {/* WORKS / GALLERY SECTION --- REDESIGNED --- */}
       <section id="works" className="py-20 bg-bbfPurple px-4">
           <div className="max-w-7xl mx-auto">
               <h2 className="text-3xl font-bold text-bbfGold mb-10 border-b-4 border-white pb-2 inline-block flex items-center">
                   <Camera className='mr-3'/> {t('works.title')}
               </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                  {galleryImages.slice(0, 8).map((image, index) => ( // Show first 8 images
-                      <img 
-                          key={index}
-                          src={image.src}
-                          alt={image.alt}
-                          className="w-full h-32 object-cover rounded-lg shadow-xl hover:scale-[1.02] transition duration-300 cursor-pointer border-4 border-white"
-                          // NOTE: You must replace the placeholder image paths above with your actual uploaded file names!
-                      />
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6"> {/* Three columns now */}
+                  {galleryImages.map((image, index) => ( 
+                      <div key={index} className="overflow-hidden rounded-lg shadow-xl group">
+                          <img 
+                              src={image.src}
+                              alt={image.alt}
+                              className="w-full h-64 object-cover transition duration-500 ease-in-out transform group-hover:scale-105"
+                          />
+                      </div>
                   ))}
               </div>
               <p className="text-sm text-white/80 mt-6 italic text-center">
@@ -175,6 +192,27 @@ function App() {
       </section>
       {/* ------------------------------------------- */}
       
+      {/* BOARD / TEAM SECTION --- NEW SECTION --- */}
+       <section id="board" className="py-20 max-w-7xl mx-auto px-4 bg-gray-50">
+          <h2 className="text-3xl font-bold text-bbfBlue mb-12 border-b-4 border-bbfGold pb-2 inline-block flex items-center">
+              <Users className='mr-3 text-bbfPurple'/> {t('board.title')}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {boardMembers.map((member, index) => (
+                  <TeamMemberCard 
+                      key={index} 
+                      imageSrc={member.img} 
+                      name={member.name} 
+                      roleKey={member.role} 
+                  />
+              ))}
+          </div>
+          <p className="text-sm text-gray-600 mt-10 italic text-center">
+              {t('board.note')}
+          </p>
+      </section>
+      {/* ------------------------------------------- */}
+
       {/* CONTACT US SECTION */}
       <section id="contact" className="py-20 bg-white px-4">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
@@ -200,7 +238,7 @@ function App() {
                 </form>
             </div>
             
-            {/* Map Placeholder */}
+            {/* Map Placeholder (remains the same) */}
             <div>
                 <h3 className="text-xl font-bold text-bbfBlue mb-4">{t('contact.locationTitle')}</h3>
                 <div className="relative h-96 bg-gray-200 rounded-lg shadow-xl overflow-hidden flex items-center justify-center">
@@ -212,7 +250,7 @@ function App() {
         </div>
       </section>
 
-      {/* DONATE SECTION (Relocated Donation Info) */}
+      {/* DONATE SECTION (remains the same) */}
       <section id="donate-section" className="py-20 bg-blue-50 px-4">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
              {/* Bank Accounts */}
@@ -250,7 +288,7 @@ function App() {
         </div>
       </section>
 
-      {/* FOOTER */}
+      {/* FOOTER (remains the same) */}
       <footer className="bg-bbfBlue text-white py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
