@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Menu, X, Globe, Banknote, Phone, Mail, MapPin, Youtube, Facebook, Send, Music, Camera, Users, Award } from 'lucide-react'; 
 
-// --- Navbar Component (remains the same) ---
+// --- Navbar Component (omitted for brevity, remains the same) ---
 const Navbar = () => {
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +22,7 @@ const Navbar = () => {
             <a href="#mission" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.mission')}</a>
             <a href="#values" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.values')}</a>
             <a href="#works" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.works')}</a> 
-            <a href="#board" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.board')}</a> {/* New Board Link */}
+            <a href="#board" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.board')}</a> 
             <a href="#contact" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.contact')}</a>
             <div className="flex space-x-2 border-l pl-4">
               <button onClick={() => changeLng('en')} className={`text-sm ${i18n.language==='en'?'font-bold text-bbfPurple':'text-bbfBlue'}`}>EN</button>
@@ -44,7 +44,7 @@ const Navbar = () => {
            <a href="#mission" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.mission')}</a>
            <a href="#values" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.values')}</a>
            <a href="#works" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.works')}</a> 
-           <a href="#board" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.board')}</a> {/* Mobile Board Link */}
+           <a href="#board" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.board')}</a> 
            <a href="#contact" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.contact')}</a> 
            <div className="flex space-x-4 pt-2 border-t">
               <button onClick={() => changeLng('en')} className="bg-gray-100 px-2 py-1 rounded">EN</button>
@@ -58,7 +58,7 @@ const Navbar = () => {
   );
 };
 
-// --- Hero Component (remains the same) ---
+// --- Hero Component (omitted for brevity, remains the same) ---
 const Hero = () => {
   const { t } = useTranslation();
   return (
@@ -77,7 +77,7 @@ const Hero = () => {
   );
 };
 
-// --- Team Member Card Component ---
+// --- Team Member Card Component (omitted for brevity, remains the same) ---
 const TeamMemberCard = ({ imageSrc, name, roleKey }) => {
   const { t } = useTranslation();
   return (
@@ -85,6 +85,7 @@ const TeamMemberCard = ({ imageSrc, name, roleKey }) => {
       <img 
         src={imageSrc}
         alt={name}
+        // This style crops the image to a perfect circle
         className="w-40 h-40 object-cover rounded-full mb-4 border-4 border-bbfGold shadow-lg"
       />
       <h4 className="text-xl font-bold text-bbfPurple">{name}</h4>
@@ -101,16 +102,31 @@ function App() {
 
   // Array of image paths for the works section
   const galleryImages = [
-    // RENAME these to match the files you upload to the /public folder
+    // Ensure these three image files are uploaded to the /public folder
     { src: '/gallery-1.jpg', alt: 'Foundation Building' },
     { src: '/gallery-2.jpg', alt: 'Internal Patient Support' },
     { src: '/gallery-3.jpg', alt: 'Outreach Activity' },
   ];
   
   const boardMembers = [
-      { img: '/apostle-yidnekachew.png', name: 'Apostle Yidnekachew Shimelis', role: 'board.founder' },
-      { img: '/board-ceo.jpg', name: 'Dr. John Doe', role: 'board.ceo' },
-      { img: '/board-finance.jpg', name: 'Mrs. Jane Smith', role: 'board.finance' },
+      { 
+          // Founder: Upload this file to the public/ folder
+          img: '/apostle-yidnekachew.jpg', 
+          name: 'Apostle Yidnekachew Shimelis', 
+          role: 'board.founder' 
+      },
+      { 
+          // CEO: Upload this file to the public/ folder
+          img: '/board-ceo.jpg', 
+          name: 'Mr. David J. K.', 
+          role: 'board.ceo' 
+      },
+      { 
+          // Finance Officer: Upload this file to the public/ folder
+          img: '/board-finance.jpg', 
+          name: 'Ms. Sarah L. B.', 
+          role: 'board.finance' 
+      },
   ];
 
 
@@ -168,13 +184,13 @@ function App() {
         </div>
       </section>
 
-      {/* WORKS / GALLERY SECTION --- REDESIGNED --- */}
+      {/* WORKS / GALLERY SECTION */}
       <section id="works" className="py-20 bg-bbfPurple px-4">
           <div className="max-w-7xl mx-auto">
               <h2 className="text-3xl font-bold text-bbfGold mb-10 border-b-4 border-white pb-2 inline-block flex items-center">
                   <Camera className='mr-3'/> {t('works.title')}
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6"> {/* Three columns now */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6"> 
                   {galleryImages.map((image, index) => ( 
                       <div key={index} className="overflow-hidden rounded-lg shadow-xl group">
                           <img 
@@ -190,9 +206,8 @@ function App() {
               </p>
           </div>
       </section>
-      {/* ------------------------------------------- */}
       
-      {/* BOARD / TEAM SECTION --- NEW SECTION --- */}
+      {/* BOARD / TEAM SECTION */}
        <section id="board" className="py-20 max-w-7xl mx-auto px-4 bg-gray-50">
           <h2 className="text-3xl font-bold text-bbfBlue mb-12 border-b-4 border-bbfGold pb-2 inline-block flex items-center">
               <Users className='mr-3 text-bbfPurple'/> {t('board.title')}
@@ -211,7 +226,6 @@ function App() {
               {t('board.note')}
           </p>
       </section>
-      {/* ------------------------------------------- */}
 
       {/* CONTACT US SECTION */}
       <section id="contact" className="py-20 bg-white px-4">
@@ -238,19 +252,27 @@ function App() {
                 </form>
             </div>
             
-            {/* Map Placeholder (remains the same) */}
+            {/* Map Placeholder - NOW A REAL MAP */}
             <div>
                 <h3 className="text-xl font-bold text-bbfBlue mb-4">{t('contact.locationTitle')}</h3>
                 <div className="relative h-96 bg-gray-200 rounded-lg shadow-xl overflow-hidden flex items-center justify-center">
-                    <MapPin size={40} className="text-gray-500 opacity-50"/>
-                    <div className="absolute top-0 left-0 w-full h-full bg-bbfBlue opacity-10"></div>
-                    <p className="absolute bottom-4 text-xs text-bbfBlue font-semibold bg-white p-1 rounded">Map Placeholder (Bishoftu City, Oromia Region)</p>
+                    {/* START: Embedded Google Map for Bishoftu, Oromia, Ethiopia */}
+                    <iframe 
+                        src="https://maps.google.com/maps?q=Bishoftu,Oromia,Ethiopia&output=embed"
+                        width="100%" 
+                        height="100%" 
+                        style={{border: 0}}
+                        allowFullScreen="" 
+                        loading="lazy" 
+                        referrerPolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    {/* END: Embedded Google Map */}
                 </div>
             </div>
         </div>
       </section>
 
-      {/* DONATE SECTION (remains the same) */}
+      {/* DONATE SECTION (omitted for brevity, remains the same) */}
       <section id="donate-section" className="py-20 bg-blue-50 px-4">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
              {/* Bank Accounts */}
@@ -288,7 +310,7 @@ function App() {
         </div>
       </section>
 
-      {/* FOOTER (remains the same) */}
+      {/* FOOTER (omitted for brevity, remains the same) */}
       <footer className="bg-bbfBlue text-white py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
