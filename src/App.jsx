@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Menu, X, Globe, Banknote, Phone, Mail, MapPin, Youtube, Facebook, Send, Music, Camera, Users, Award, Heart, BookOpen } from 'lucide-react'; 
 
-// --- Navbar Component (FIXED: Single Span with Responsive Sizing) ---
+// --- Navbar Component (Fixed for Mobile Sizing) ---
 const Navbar = () => {
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +15,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <img className="h-16 w-auto" src="/logo.png" alt="Logo" />
             
-            {/* FIX APPLIED HERE: text-base for mobile, scales up to text-lg on sm screens and above */}
+            {/* Full name displayed, size reduced on mobile (text-base) and normal on desktop (sm:text-lg) */}
             <span className="ml-2 text-base sm:text-lg font-bold text-bbfBlue">Barkot Bekele Foundation</span>
             
           </div>
@@ -24,7 +24,7 @@ const Navbar = () => {
             <a href="#mission" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.mission')}</a>
             <a href="#values" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.values')}</a>
             <a href="#works" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.works')}</a> 
-            <a href="#legacy" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.legacy')}</a> 
+            <a href="#legacy" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.legacy')}</a> {/* Legacy Programs */}
             <a href="#board" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.board')}</a> 
             <a href="#contact" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.contact')}</a>
             <div className="flex space-x-2 border-l pl-4">
@@ -61,13 +61,15 @@ const Navbar = () => {
     </nav>
   );
 };
-// --- Hero Component (omitted for brevity, remains the same) ---
+
+// --- Hero Component (Aesthetics: Texture and Circles) ---
 const Hero = () => {
   const { t } = useTranslation();
   return (
-    // Background pattern and circles added to the Hero section
     <div className="relative bg-bbfPurple pt-32 pb-20 px-4 text-center md:text-left overflow-hidden 
                     after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-[url('/bbf-pattern.svg')] after:opacity-10 after:z-0">
+      
+      {/* Subtle Circles */}
       <div className="absolute top-1/4 -right-1/4 w-80 h-80 rounded-full bg-bbfBlue opacity-30 blur-3xl z-0"></div>
       <div className="absolute bottom-0 -left-1/4 w-64 h-64 rounded-full bg-bbfGold opacity-20 blur-3xl z-0"></div>
       
@@ -93,7 +95,6 @@ const TeamMemberCard = ({ imageSrc, name, roleKey }) => {
       <img 
         src={imageSrc}
         alt={name}
-        // This style crops the image to a perfect circle
         className="w-40 h-40 object-cover rounded-full mb-4 border-4 border-bbfGold shadow-lg"
       />
       <h4 className="text-xl font-bold text-bbfPurple">{name}</h4>
@@ -173,6 +174,7 @@ const LegacyPrograms = () => {
         </section>
     );
 };
+
 
 // --- Main App Component ---
 function App() {
@@ -259,7 +261,7 @@ function App() {
         </div>
       </section>
 
-      {/* WORKS / GALLERY SECTION */}
+      {/* WORKS / GALLERY SECTION (Aesthetics: Texture) */}
       <section id="works" className="relative py-20 bg-bbfPurple px-4 overflow-hidden 
                      after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-[url('/bbf-pattern.svg')] after:opacity-10 after:z-0">
           <div className="max-w-7xl mx-auto relative z-10">
@@ -283,7 +285,7 @@ function App() {
           </div>
       </section>
       
-      {/* LEGACY PROGRAMS SECTION (NEW) */}
+      {/* LEGACY PROGRAMS SECTION */}
       <LegacyPrograms />
 
       {/* BOARD / TEAM SECTION */}
@@ -306,7 +308,7 @@ function App() {
           </p>
       </section>
 
-      {/* CONTACT US SECTION (Using JS for clean mailto) */}
+      {/* CONTACT US SECTION (Fixed for clean mailto body) */}
       <section id="contact" className="py-20 bg-white px-4">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
             {/* Contact Form */}
@@ -329,6 +331,7 @@ function App() {
                     const message = e.target.message.value;
                     
                     const subject = encodeURIComponent(`Message from ${name} via Website`);
+                    // Construct body with clean line breaks
                     const bodyContent = encodeURIComponent(`Sender Name: ${name}\nSender Email: ${email}\n\nMessage:\n${message}`);
                     
                     const mailtoLink = `mailto:barkotbekelefoundation@gmail.com?subject=${subject}&body=${bodyContent}`;
@@ -363,7 +366,7 @@ function App() {
         </div>
       </section>
 
-      {/* DONATE SECTION (QR Code resized and Logos updated) */}
+      {/* DONATE SECTION (Updated Colors, Logos, and QR Size) */}
       <section id="donate-section" className="py-20 bg-blue-50 px-4">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
              {/* Bank Accounts */}
@@ -383,4 +386,4 @@ function App() {
                     
                     {/* Abyssinia Bank */}
                     <div className="bg-blue-200 p-3 rounded flex items-center">
-                      
+                    
