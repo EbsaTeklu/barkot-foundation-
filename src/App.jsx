@@ -103,7 +103,7 @@ const TeamMemberCard = ({ imageSrc, name, roleKey }) => {
   );
 };
 
-// --- Legacy Programs Component (NEW) ---
+// --- Legacy Programs Component ---
 const LegacyPrograms = () => {
     const { t } = useTranslation();
 
@@ -386,4 +386,4 @@ function App() {
                     
                     {/* Abyssinia Bank */}
                     <div className="bg-blue-200 p-3 rounded flex items-center">
-                    
+                        <i
