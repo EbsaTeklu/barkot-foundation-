@@ -386,4 +386,64 @@ function App() {
                     
                     {/* Abyssinia Bank */}
                     <div className="bg-blue-200 p-3 rounded flex items-center">
-                        <i
+                        <img src="/logo-abyssinia.png" alt="Abyssinia Bank Logo" className="w-8 h-8 object-contain mr-3"/>
+                        <div>
+                            <span className="font-semibold text-bbfPurple block">Abyssinia Bank:</span>
+                            <span className="text-lg font-mono">2678817818</span>
+                        </div>
+                    </div>
+                    
+                    {/* Abay Bank */}
+                    <div className="bg-blue-200 p-3 rounded flex items-center">
+                        <img src="/logo-abay.png" alt="Abay Bank Logo" className="w-8 h-8 object-contain mr-3"/>
+                        <div>
+                            <span className="font-semibold text-bbfPurple block">Abay Bank:</span>
+                            <span className="text-lg font-mono">10000000000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* QR/Telebirr */}
+            <div className="space-y-4 pt-12 md:pt-0">
+                 <h3 className="text-2xl font-bold text-bbfBlue mb-2 flex items-center">
+                     {t('donate.telebirrTitle')} 
+                     <img src="/logo-telebirr.png" alt="Telebirr Logo" className="w-10 h-10 object-contain ml-3"/>
+                 </h3>
+                 <p className="text-lg font-semibold flex items-center">
+                    <Banknote size={24} className="mr-2 text-bbfPurple"/> Telebirr Short Code: <span className="text-2xl font-mono ml-2">569477</span>
+                 </p>
+                 <div className="mt-4 flex justify-start">
+                    {/* QR Code - SIZE W-64 H-64 */}
+                    <img 
+                        src="/qr-code.png" 
+                        alt="Telebirr QR Code" 
+                        className="w-64 h-64 bg-white p-1 rounded shadow-lg border border-bbfGold" 
+                    />
+                 </div>
+                 <p className="text-xs italic pt-2 opacity-70">Please ensure qr-code.png is uploaded to the public folder.</p>
+            </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="bg-bbfBlue text-white py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+                © {currentYear} {t('footer.rights')}
+            </div>
+            
+            <div className="flex space-x-6">
+                {/* Social Media Links */}
+                <a href="https://youtube.com/@barkotbekelefoundation" target="_blank" className="hover:text-bbfGold transition"><Youtube size={24}/></a>
+                <a href="https://t.me/BarkotBekeleFoundation" target="_blank" className="hover:text-bbfGold transition"><Send size={24}/></a> 
+                <a href="https://www.facebook.com/share/1BtQ6UB852/" target="_blank" className="hover:text-bbfGold transition"><Facebook size={24}/></a>
+                <a href="https://www.tiktok.com/@barkot.bekele.fou?_r=1&_t=ZS-921YxNQFhHr" target="_blank" className="hover:text-bbfGold transition"><Music size={24}/></a> 
+            </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
+
+export default App;
