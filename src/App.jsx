@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, Globe, Banknote, Phone, Mail, MapPin, Youtube, Facebook, Send, Music, Camera, Users, Award } from 'lucide-react'; 
+import { Menu, X, Globe, Banknote, Phone, Mail, MapPin, Youtube, Facebook, Send, Music, Camera, Users, Award, Heart, BookOpen } from 'lucide-react'; 
 
-// --- Navbar Component (omitted for brevity, remains the same) ---
+// --- Navbar Component (FIXED: Single Span with Responsive Sizing) ---
 const Navbar = () => {
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
@@ -14,14 +14,17 @@ const Navbar = () => {
         <div className="flex justify-between h-20">
           <div className="flex items-center">
             <img className="h-16 w-auto" src="/logo.png" alt="Logo" />
-            <span className="ml-2 text-lg font-bold text-bbfBlue hidden sm:block">Barkot Bekele Foundation</span>
-            <span className="ml-2 text-base font-bold text-bbfBlue sm:hidden">Barkot Bekele Foundation</span>
+            
+            {/* FIX APPLIED HERE: text-base for mobile, scales up to text-lg on sm screens and above */}
+            <span className="ml-2 text-base sm:text-lg font-bold text-bbfBlue">Barkot Bekele Foundation</span>
+            
           </div>
           <div className="hidden md:flex items-center space-x-6">
             <a href="#about" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.about')}</a>
             <a href="#mission" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.mission')}</a>
             <a href="#values" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.values')}</a>
             <a href="#works" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.works')}</a> 
+            <a href="#legacy" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.legacy')}</a> 
             <a href="#board" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.board')}</a> 
             <a href="#contact" className="text-bbfBlue font-medium hover:text-bbfPurple">{t('nav.contact')}</a>
             <div className="flex space-x-2 border-l pl-4">
@@ -44,6 +47,7 @@ const Navbar = () => {
            <a href="#mission" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.mission')}</a>
            <a href="#values" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.values')}</a>
            <a href="#works" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.works')}</a> 
+           <a href="#legacy" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.legacy')}</a> 
            <a href="#board" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.board')}</a> 
            <a href="#contact" onClick={()=>setIsOpen(false)} className="py-1 text-bbfBlue">{t('nav.contact')}</a> 
            <div className="flex space-x-4 pt-2 border-t">
@@ -57,8 +61,7 @@ const Navbar = () => {
     </nav>
   );
 };
-
-// --- Hero Component (Texture and Overlay Added) ---
+// --- Hero Component (omitted for brevity, remains the same) ---
 const Hero = () => {
   const { t } = useTranslation();
   return (
@@ -99,6 +102,77 @@ const TeamMemberCard = ({ imageSrc, name, roleKey }) => {
   );
 };
 
+// --- Legacy Programs Component (NEW) ---
+const LegacyPrograms = () => {
+    const { t } = useTranslation();
+
+    const ProgramCard = ({ titleKey, introKey, itemsKey, imageSrc, icon: Icon }) => (
+        <div className="bg-white p-6 rounded-xl shadow-2xl border-t-8 border-bbfPurple hover:border-bbfGold transition duration-300">
+            <div className="flex items-center mb-4">
+                <Icon size={32} className="text-bbfGold mr-3"/>
+                <h3 className="text-2xl font-bold text-bbfPurple">{t(titleKey)}</h3>
+            </div>
+            
+            <p className="text-gray-600 mb-4">{t(introKey)}</p>
+            
+            <div className="grid md:grid-cols-2 gap-4 items-start">
+                {/* Text Content */}
+                <div>
+                    <h4 className="text-lg font-semibold text-bbfBlue mb-2">{t('legacy.programIncludes')}</h4>
+                    <ul className="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                        {t(itemsKey, { returnObjects: true }).map((item, index) => (
+                            <li key={index}>{item}</li>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* Image */}
+                <div className="flex justify-center md:justify-end mt-4 md:mt-0">
+                    <img 
+                        src={imageSrc}
+                        alt={t(titleKey)}
+                        className="w-full max-w-xs h-40 object-cover rounded-lg shadow-md border-2 border-bbfGold"
+                    />
+                </div>
+            </div>
+            <p className="mt-4 italic text-sm text-bbfBlue/70">{t('legacy.continuity')}</p>
+        </div>
+    );
+
+    return (
+        <section id="legacy" className="py-20 bg-blue-50 px-4">
+            <div className="max-w-7xl mx-auto">
+                <h2 className="text-3xl font-bold text-bbfPurple mb-10 border-b-4 border-bbfGold pb-2 inline-block flex items-center">
+                    <Award className='mr-3'/> {t('legacy.title')}
+                </h2>
+                <div className="text-lg text-gray-700 space-y-6 mb-12">
+                    <p>{t('legacy.intro1')}</p>
+                    <p className='font-semibold'>{t('legacy.intro2')}</p>
+                </div>
+                
+                <div className="space-y-12">
+                    {/* 1. The Good Samaritan Program */}
+                    <ProgramCard
+                        titleKey="legacy.samaritanTitle"
+                        introKey="legacy.samaritanIntro"
+                        itemsKey="legacy.samaritanItems"
+                        imageSrc="/legacy-samaritan.jpg"
+                        icon={Heart} 
+                    />
+
+                    {/* 2. Annual School Supplies Support Program */}
+                    <ProgramCard
+                        titleKey="legacy.schoolTitle"
+                        introKey="legacy.schoolIntro"
+                        itemsKey="legacy.schoolItems"
+                        imageSrc="/legacy-school.jpg"
+                        icon={BookOpen} 
+                    />
+                </div>
+            </div>
+        </section>
+    );
+};
 
 // --- Main App Component ---
 function App() {
@@ -114,19 +188,16 @@ function App() {
   
   const boardMembers = [
       { 
-          // Founder: Upload this file to the public/ folder
           img: '/apostle-yidnekachew.jpg', 
           name: 'Apostle Yidnekachew Shimelis', 
           role: 'board.founder' 
       },
       { 
-          // CEO: Upload this file to the public/ folder
           img: '/board-ceo.jpg', 
           name: 'Mr. David J. K.', 
           role: 'board.ceo' 
       },
       { 
-          // Finance Officer: Upload this file to the public/ folder
           img: '/board-finance.jpg', 
           name: 'Ms. Sarah L. B.', 
           role: 'board.finance' 
@@ -146,7 +217,7 @@ function App() {
       <Navbar />
       <Hero />
       
-      {/* ABOUT US (omitted for brevity, remains the same) */}
+      {/* ABOUT US */}
       <section id="about" className="py-20 max-w-7xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-bbfBlue mb-6 border-b-4 border-bbfGold pb-2 inline-block">{t('about.title')}</h2>
         <div className="text-lg text-gray-700 space-y-6">
@@ -155,7 +226,7 @@ function App() {
         </div>
       </section>
 
-      {/* MISSION & PURPOSE (omitted for brevity, remains the same) */}
+      {/* MISSION & PURPOSE (Side-by-Side) */}
       <section className="py-20 bg-blue-50 px-4">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
             {/* MISSION */}
@@ -178,7 +249,7 @@ function App() {
         </div>
       </section>
 
-      {/* VALUES (omitted for brevity, remains the same) */}
+      {/* VALUES */}
       <section id="values" className="py-20 max-w-7xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-bbfBlue mb-10 border-b-4 border-bbfGold pb-2 inline-block">{t('values.title')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -188,7 +259,7 @@ function App() {
         </div>
       </section>
 
-      {/* WORKS / GALLERY SECTION (Texture Added) */}
+      {/* WORKS / GALLERY SECTION */}
       <section id="works" className="relative py-20 bg-bbfPurple px-4 overflow-hidden 
                      after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-[url('/bbf-pattern.svg')] after:opacity-10 after:z-0">
           <div className="max-w-7xl mx-auto relative z-10">
@@ -212,7 +283,10 @@ function App() {
           </div>
       </section>
       
-      {/* BOARD / TEAM SECTION (omitted for brevity, remains the same) */}
+      {/* LEGACY PROGRAMS SECTION (NEW) */}
+      <LegacyPrograms />
+
+      {/* BOARD / TEAM SECTION */}
        <section id="board" className="py-20 max-w-7xl mx-auto px-4 bg-gray-50">
           <h2 className="text-3xl font-bold text-bbfBlue mb-12 border-b-4 border-bbfGold pb-2 inline-block flex items-center">
               <Users className='mr-3 text-bbfPurple'/> {t('board.title')}
@@ -231,9 +305,8 @@ function App() {
               {t('board.note')}
           </p>
       </section>
-// ... (code remains the same up to the start of the Contact section)
 
-      {/* CONTACT US SECTION */}
+      {/* CONTACT US SECTION (Using JS for clean mailto) */}
       <section id="contact" className="py-20 bg-white px-4">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
             {/* Contact Form */}
@@ -248,22 +321,18 @@ function App() {
                 
                 <h3 className="text-xl font-bold text-bbfBlue mb-4">{t('contact.formTitle')}</h3>
                 
-                {/* START: UPDATED FORM TO USE JAVASCRIPT FOR CLEAN MAILTO BODY */}
                 <form onSubmit={(e) => {
-                    e.preventDefault(); // Stop default form submission
+                    e.preventDefault(); 
                     
-                    // Get values from the form inputs
                     const name = e.target.name.value;
                     const email = e.target.email.value;
                     const message = e.target.message.value;
                     
-                    // Construct the email body to be clean, adding sender info for context
                     const subject = encodeURIComponent(`Message from ${name} via Website`);
                     const bodyContent = encodeURIComponent(`Sender Name: ${name}\nSender Email: ${email}\n\nMessage:\n${message}`);
                     
                     const mailtoLink = `mailto:barkotbekelefoundation@gmail.com?subject=${subject}&body=${bodyContent}`;
                     
-                    // Open the email client
                     window.location.href = mailtoLink;
                 }} className="space-y-4 bg-blue-50 p-6 rounded-lg shadow">
                     
@@ -274,17 +343,16 @@ function App() {
                         {t('contact.sendButton')} <Send size={20} className="ml-2"/>
                     </button>
                 </form>
-                {/* END: UPDATED FORM */}
             </div>
             
-            {/* Map (remains the same) */}
+            {/* Map */}
             <div>
                 <h3 className="text-xl font-bold text-bbfBlue mb-4">{t('contact.locationTitle')}</h3>
                 <div className="relative h-96 bg-gray-200 rounded-lg shadow-xl overflow-hidden flex items-center justify-center">
                     <iframe 
                         src="https://maps.google.com/maps?q=Bishoftu,Oromia,Ethiopia&output=embed"
                         width="100%" 
-                        height="150%" 
+                        height="100%" 
                         style={{border: 0}}
                         allowFullScreen="" 
                         loading="lazy" 
@@ -294,7 +362,7 @@ function App() {
             </div>
         </div>
       </section>
-      
+
       {/* DONATE SECTION (QR Code resized and Logos updated) */}
       <section id="donate-section" className="py-20 bg-blue-50 px-4">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
@@ -315,64 +383,4 @@ function App() {
                     
                     {/* Abyssinia Bank */}
                     <div className="bg-blue-200 p-3 rounded flex items-center">
-                        <img src="/logo-abyssinia.png" alt="Abyssinia Bank Logo" className="w-8 h-8 object-contain mr-3"/>
-                        <div>
-                            <span className="font-semibold text-bbfPurple block">Abyssinia Bank:</span>
-                            <span className="text-lg font-mono">2678817818</span>
-                        </div>
-                    </div>
-                    
-                    {/* Abay Bank */}
-                    <div className="bg-blue-200 p-3 rounded flex items-center">
-                        <img src="/logo-abay.png" alt="Abay Bank Logo" className="w-8 h-8 object-contain mr-3"/>
-                        <div>
-                            <span className="font-semibold text-bbfPurple block">Abay Bank:</span>
-                            <span className="text-lg font-mono">10000000000</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* QR/Telebirr */}
-            <div className="space-y-4 pt-12 md:pt-0">
-                 <h3 className="text-2xl font-bold text-bbfBlue mb-2 flex items-center">
-                     {t('donate.telebirrTitle')} 
-                     <img src="/logo-telebirr.png" alt="Telebirr Logo" className="w-10 h-10 object-contain ml-3"/>
-                 </h3>
-                 <p className="text-lg font-semibold flex items-center">
-                    <Banknote size={24} className="mr-2 text-bbfPurple"/> Telebirr Short Code: <span className="text-2xl font-mono ml-2">569477</span>
-                 </p>
-                 <div className="mt-4 flex justify-start">
-                    {/* QR Code - SIZE CHANGED TO W-64 H-64 */}
-                    <img 
-                        src="/qr-code.png" 
-                        alt="Telebirr QR Code" 
-                        className="w-64 h-64 bg-white p-1 rounded shadow-lg border border-bbfGold" 
-                    />
-                 </div>
-                 <p className="text-xs italic pt-2 opacity-70">Please ensure qr-code.png is uploaded to the public folder.</p>
-            </div>
-        </div>
-      </section>
-
-      {/* FOOTER (omitted for brevity, remains the same) */}
-      <footer className="bg-bbfBlue text-white py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
-                © {currentYear} {t('footer.rights')}
-            </div>
-            
-            <div className="flex space-x-6">
-                {/* Social Media Links */}
-                <a href="https://youtube.com/@barkotbekelefoundation" target="_blank" className="hover:text-bbfGold transition"><Youtube size={24}/></a>
-                <a href="https://t.me/BarkotBekeleFoundation" target="_blank" className="hover:text-bbfGold transition"><Send size={24}/></a> 
-                <a href="https://www.facebook.com/share/1BtQ6UB852/" target="_blank" className="hover:text-bbfGold transition"><Facebook size={24}/></a>
-                <a href="https://www.tiktok.com/@barkot.bekele.fou?_r=1&_t=ZS-921YxNQFhHr" target="_blank" className="hover:text-bbfGold transition"><Music size={24}/></a> 
-            </div>
-        </div>
-      </footer>
-    </div>
-  )
-}
-
-export default App;
+                      
